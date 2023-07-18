@@ -18,14 +18,19 @@ function AddProducto() {
 function showProducto() {
     let divDinamico = document.getElementById('dinamico');
     let dibujarTabla ='';
-    if (producto.length > 0){
+    if (productos.length > 0){
         dibujarTabla = '<div class="tituloDinamico"><h3>Listado de Pedidos</h3></div>';
+        dibujarTabla += `<div class="tituloTable">Producto</div>`;
+        dibujarTabla += `<div class="tituloTable">Pedido</div>`;
+        dibujarTabla += `<div class="tituloTable">Cantidad</div>`;
+        dibujarTabla += `<div class="tituloTable">Valor</div>`;
+        dibujarTabla += `<div class="rowDelete">Borrar</div>`;
         divDinamico.innerHTML = dibujarTabla;
     }
 
-    productos.forEach(producto, index => {
+    productos.forEach((producto, index) => {
         dibujarTabla += `<div class="rowDinamico">${producto.pedido}</div>`;
-        dibujarTabla += `<div class="rowDinamico">${producto.prod}</div>`;
+        dibujarTabla += `<div class="rowDinamico">${producto.producto}</div>`;
         dibujarTabla += `<div class="rowDinamico">${producto.cantidad}</div>`;
         dibujarTabla += `<div class="rowDinamico">${producto.valor}</div>`;
         dibujarTabla += `<div class="rowDelete"><a href="#" class="btn btn-danger" onclick="deleteProducto(${index})">X</a></div>`;    
@@ -35,6 +40,6 @@ function showProducto() {
 }
 
 function deleteProducto(item){
-    items.splice(item,1);
+    productos.splice(item,1);
     showProducto();
 }
